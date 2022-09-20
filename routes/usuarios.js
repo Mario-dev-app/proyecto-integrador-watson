@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const Usuario = require('../models/usuario');
 
 router.get('/usuarios', (req, res) => {
    
@@ -37,7 +38,17 @@ router.post('/usuarios', (req, res) => {
     }
     */
     const usuario = req.body.usuario;
-    console.log('Usuario:', usuario);
+    if(usuario){
+        console.log('Usuario:', usuario);
+        Usuario.sync();
+        Usuario.create({
+            nombre: usuario
+        }).then(() => {
+            console.log('Usuario registrado correctamente: ', usuario);
+        }).catch( (err) => {
+            console.log(err);
+        });
+    }
     res.json({
         ok: true
     });
