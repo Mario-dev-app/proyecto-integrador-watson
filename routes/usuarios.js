@@ -9,16 +9,18 @@ let pedido = {
     pedido: ''
 };
 
-router.get('/usuarios', (req, res) => {
-    let usuarios = {
-            nombre: 'Mario',
-            apellido: 'Peralta',
-            edad: 27
-        };
-
-    if (usuarios) {
-        res.send(usuarios);
-    } 
+router.get('/pedido', (req, res) => {
+    Pedido.findAll().then((pedidos) => {
+        res.json({
+            ok: true,
+            pedidos
+        });
+    }).catch( (err) => {
+        res.status(400).json({
+            ok:false,
+            error: err
+        });
+    });
 });
 
 router.post('/pedido-nombre', async (req, res) => {
@@ -93,6 +95,35 @@ router.post('/pedido-correo', async (req, res) => {
         }).catch( (err) => {
             console.log(err);
         }); */
+    }
+    res.json({
+        ok: true
+    });
+});
+
+router.post('/pedido-pedido', async (req, res) => {
+    /*
+    #swagger.parameters['pedido'] = {
+        in: 'body',
+        description: 'Pedido del usuario',
+        schema: { pedido: 'Iphone 14 Plus Max, Macbook Air'}
+    }
+    */
+    const pedidoEnviado = req.body.pedido;
+    if(pedidoEnviado){
+        pedido.pedido = pedidoEnviado;
+        console.log(pedido);
+        await Pedido.sync();
+        Pedido.create({
+            nombre: pedido.nombre,
+            telefono: pedido.telefono,
+            correo: pedido.correo,
+            pedido: pedido.pedido
+        }).then(() => {
+            console.log('Pedido registrado correctamente');
+        }).catch( (err) => {
+            console.log(err);
+        });
     }
     res.json({
         ok: true
