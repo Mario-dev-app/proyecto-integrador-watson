@@ -3,30 +3,23 @@ const router = express.Router();
 const Usuario = require('../models/usuario');
 
 router.get('/usuarios', (req, res) => {
-   
-    let usuarios = [
-        {
+    /* #swagger.responses[200] = {
+                description: 'Obtener usuarios',
+                schema: {
+                    nombre: 'Mario',
+                    apellido: 'Peralta',
+                    edad: 27
+                }
+        } */
+    let usuarios = {
             nombre: 'Mario',
             apellido: 'Peralta',
             edad: 27
-        },
-        {
-            nombre: 'Julio',
-            apellido: 'Zapata',
-            edad: 35
-        }
-    ];
+        };
 
     if (usuarios) {
-        res.json({
-            usuarios,
-            message: 'Hay usuarios'
-        });
-    } else {
-        res.status(500).json({
-            message: 'No hay usuarios para mostrar'
-        });
-    }
+        res.send(usuarios);
+    } 
 });
 
 router.post('/usuarios', async (req, res) => {

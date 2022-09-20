@@ -17,10 +17,27 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
+            "description": "Obtener usuarios",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nombre": {
+                  "type": "string",
+                  "example": "Mario"
+                },
+                "apellido": {
+                  "type": "string",
+                  "example": "Peralta"
+                },
+                "edad": {
+                  "type": "number",
+                  "example": 27
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
           }
         }
       },
