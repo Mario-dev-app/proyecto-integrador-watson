@@ -17,35 +17,17 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "Obtener usuarios",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "nombre": {
-                  "type": "string",
-                  "example": "Mario"
-                },
-                "apellido": {
-                  "type": "string",
-                  "example": "Peralta"
-                },
-                "edad": {
-                  "type": "number",
-                  "example": 27
-                }
-              },
-              "xml": {
-                "name": "main"
-              }
-            }
+            "description": "OK"
           }
         }
-      },
+      }
+    },
+    "/pedido-nombre": {
       "post": {
         "description": "",
         "parameters": [
           {
-            "name": "usuario",
+            "name": "nombre",
             "in": "body",
             "description": "Nombre del usuario",
             "schema": {
@@ -62,6 +44,79 @@
         "responses": {
           "200": {
             "description": "OK"
+          }
+        }
+      }
+    },
+    "/pedido-telefono": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "telefono",
+            "in": "body",
+            "description": "Teléfono del usuario",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "telefono": {
+                  "type": "string",
+                  "example": "972914057"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/pedido-correo": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "correo",
+            "in": "body",
+            "description": "Correo del usuario",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "correo": {
+                  "type": "string",
+                  "example": "mariopw4@gmail.com"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Usuario": {
+        "type": "object",
+        "properties": {
+          "nombre": {
+            "type": "string",
+            "example": "Mario"
+          },
+          "apellido": {
+            "type": "string",
+            "example": "Peralta"
+          },
+          "edad": {
+            "type": "number",
+            "example": 27
           }
         }
       }

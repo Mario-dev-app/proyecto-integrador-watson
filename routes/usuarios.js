@@ -1,16 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const Usuario = require('../models/usuario');
+const Pedido = require('../models/pedido');
+
+let pedido = {
+    nombre: '',
+    telefono: '',
+    correo: '',
+    pedido: ''
+};
 
 router.get('/usuarios', (req, res) => {
-    /* #swagger.responses[200] = {
-                description: 'Obtener usuarios',
-                schema: {
-                    nombre: 'Mario',
-                    apellido: 'Peralta',
-                    edad: 27
-                }
-        } */
     let usuarios = {
             nombre: 'Mario',
             apellido: 'Peralta',
@@ -22,25 +21,78 @@ router.get('/usuarios', (req, res) => {
     } 
 });
 
-router.post('/usuarios', async (req, res) => {
+router.post('/pedido-nombre', async (req, res) => {
     /*
-    #swagger.parameters['usuario'] = {
+    #swagger.parameters['nombre'] = {
         in: 'body',
         description: 'Nombre del usuario',
         schema: { nombre: 'Mario Peralta'}
     }
     */
-    const usuario = req.body.usuario;
-    if(usuario){
-        console.log('Usuario:', usuario);
-        await Usuario.sync();
-        Usuario.create({
-            nombre: usuario
+    const nombre = req.body.nombre;
+    if(nombre){
+        pedido.nombre = nombre;
+        console.log(pedido);
+        /* await Pedido.sync();
+        Pedido.create({
+            nombre: nombre
         }).then(() => {
-            console.log('Usuario registrado correctamente: ', usuario);
+            console.log('Usuario registrado correctamente: ', nombre);
         }).catch( (err) => {
             console.log(err);
-        });
+        }); */
+    }
+    res.json({
+        ok: true
+    });
+});
+
+router.post('/pedido-telefono', async (req, res) => {
+    /*
+    #swagger.parameters['telefono'] = {
+        in: 'body',
+        description: 'Teléfono del usuario',
+        schema: { telefono: '972914057'}
+    }
+    */
+    const telefono = req.body.telefono;
+    if(telefono){
+        pedido.telefono = telefono;
+        console.log(pedido);
+        /* await Pedido.sync();
+        Pedido.create({
+            nombre: telefono
+        }).then(() => {
+            console.log('Usuario registrado correctamente: ', telefono);
+        }).catch( (err) => {
+            console.log(err);
+        }); */
+    }
+    res.json({
+        ok: true
+    });
+});
+
+router.post('/pedido-correo', async (req, res) => {
+    /*
+    #swagger.parameters['correo'] = {
+        in: 'body',
+        description: 'Correo del usuario',
+        schema: { correo: 'mariopw4@gmail.com'}
+    }
+    */
+    const correo = req.body.correo;
+    if(correo){
+        pedido.correo = correo;
+        console.log(pedido);
+        /* await Pedido.sync();
+        Pedido.create({
+            nombre: telefono
+        }).then(() => {
+            console.log('Usuario registrado correctamente: ', telefono);
+        }).catch( (err) => {
+            console.log(err);
+        }); */
     }
     res.json({
         ok: true

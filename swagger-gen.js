@@ -8,13 +8,13 @@ const doc = {
     },
     host: 'test-swagger-cibertec.herokuapp.com',
     schemes: ['https'],
-    /* definitions: {
+    definitions: {
         Usuario: {
             nombre: 'Mario',
             apellido: 'Peralta',
             edad: 27
         }
-    } */
+    }
 };
 
 const outputFile = './swagger.json';
