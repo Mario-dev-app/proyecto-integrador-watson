@@ -1,0 +1,53 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API REST de prueba",
+    "description": "Esta es una API para probar la funcionalidad de generar automáticamente el documento JSON de Swagger",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://test-swagger-cibertec.herokuapp.com"
+    }
+  ],
+  "paths": {
+    "/usuarios": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "usuario",
+            "in": "body",
+            "description": "Nombre del usuario",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nombre": {
+                  "type": "string",
+                  "example": "Mario Peralta"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

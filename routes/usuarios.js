@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/usuarios', (req, res) => {
+   
     let usuarios = [
         {
             nombre: 'Mario',
@@ -15,16 +16,31 @@ router.get('/usuarios', (req, res) => {
         }
     ];
 
-    if(usuarios){
+    if (usuarios) {
         res.json({
             usuarios,
             message: 'Hay usuarios'
         });
-    }else{
+    } else {
         res.status(500).json({
             message: 'No hay usuarios para mostrar'
         });
     }
+});
+
+router.post('/usuarios', (req, res) => {
+    /*
+    #swagger.parameters['usuario'] = {
+        in: 'body',
+        description: 'Nombre del usuario',
+        schema: { nombre: 'Mario Peralta'}
+    }
+    */
+    const usuario = body.usuario;
+    console.log('Usuario:', usuario);
+    res.json({
+        ok: true
+    });
 });
 
 module.exports = router;
