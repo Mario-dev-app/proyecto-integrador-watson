@@ -36,7 +36,7 @@ router.post('/usuarios', (req, res) => {
         schema: { nombre: 'Mario Peralta'}
     }
     */
-    const usuario = body.usuario;
+    const usuario = req.body.usuario;
     console.log('Usuario:', usuario);
     res.json({
         ok: true
