@@ -29,7 +29,7 @@ router.get('/usuarios', (req, res) => {
     }
 });
 
-router.post('/usuarios', (req, res) => {
+router.post('/usuarios', async (req, res) => {
     /*
     #swagger.parameters['usuario'] = {
         in: 'body',
@@ -40,7 +40,7 @@ router.post('/usuarios', (req, res) => {
     const usuario = req.body.usuario;
     if(usuario){
         console.log('Usuario:', usuario);
-        Usuario.sync();
+        await Usuario.sync();
         Usuario.create({
             nombre: usuario
         }).then(() => {
