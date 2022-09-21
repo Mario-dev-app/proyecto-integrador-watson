@@ -9,7 +9,7 @@ let pedido = {
     pedido: ''
 };
 
-router.get('/usuario', (req, res) => {
+router.post('/usuario', (req, res) => {
     /*
     #swagger.responses[200] = {
         description: 'Some description...',

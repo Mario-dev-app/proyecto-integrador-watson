@@ -12,7 +12,7 @@
   ],
   "paths": {
     "/usuario": {
-      "get": {
+      "post": {
         "description": "",
         "parameters": [
           {
