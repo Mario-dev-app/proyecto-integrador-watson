@@ -13,14 +13,19 @@ router.get('/usuario', (req, res) => {
     /*
     #swagger.responses[200] = {
         description: 'Some description...',
-        schema: { $ref: '#/components/schema/Usuario' }
+        content: {
+            "application/json": {
+            schema: { $ref: "#/components/schemas/Usuario" },
+                      
+            }
+        }
     }
     */
     let usuario = {
         nombre: 'Mario'
     }
 
-    res.send(usuario);
+    res.json({usuario});
 })
 
 router.get('/pedido', (req, res) => {
