@@ -25,7 +25,7 @@ router.get('/usuario', (req, res) => {
         nombre: 'Mario'
     }
 
-    res.json({usuario});
+    res.send(usuario);
 })
 
 router.get('/pedido', (req, res) => {

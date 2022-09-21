@@ -15,14 +15,12 @@ const doc = {
             edad: 27
         }
     } */
-    components: {
-        '@schemas': {
-            Usuario: {
-                type: 'object',
-                properties: {
-                    nombre: {
-                        type: 'string'
-                    }
+    '@definitions': {
+        Usuario: {
+            type: 'object',
+            properties: {
+                nombre: {
+                    type: 'string'
                 }
             }
         }
