@@ -21,12 +21,23 @@ router.get('/usuario', (req, res) => {
         }
     }
     */
+   /*
+   #swagger.parameters['dni'] = {
+        in: 'body',
+        description: 'DNI del usuario',
+        schema: { dni: '72552743'}
+   }
+   */
+    let dni = req.body.dni;
     let usuario = {
-        nombre: 'Mario'
+        nombre: 'Mario Peralta Westreicher'
     }
-
-    res.send(usuario);
-})
+    if(dni === '72552743'){
+        res.send(usuario);
+    }else{
+        res.send({nombre: 'No se encontró registro con ese DNI'});
+    }
+});
 
 router.get('/pedido', (req, res) => {
     Pedido.findAll().then((pedidos) => {

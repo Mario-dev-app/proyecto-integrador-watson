@@ -1,4 +1,5 @@
 {
+  "swagger": "2.0",
   "openapi": "3.0.0",
   "info": {
     "title": "API REST de prueba",
@@ -7,14 +8,29 @@
   },
   "servers": [
     {
-      "url": "https://test-swagger-cibertec.herokuapp.com"
+      "url": "https://test-swagger-cibertec.herokuapp.com/"
     }
   ],
   "paths": {
     "/usuario": {
       "get": {
         "description": "",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "dni",
+            "in": "body",
+            "description": "DNI del usuario",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "dni": {
+                  "type": "string",
+                  "example": "72552743"
+                }
+              }
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Some description...",
