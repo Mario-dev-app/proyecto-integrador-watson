@@ -29,6 +29,7 @@ router.get('/usuario', (req, res) => {
    }
    */
     let dni = req.body.dni;
+    console.log(dni);
     let usuario = {
         nombre: 'Mario Peralta Westreicher'
     }
