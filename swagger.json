@@ -1,4 +1,5 @@
 {
+  "swagger": "2.0",
   "openapi": "3.0.0",
   "info": {
     "title": "API REST de prueba",
@@ -7,17 +8,34 @@
   },
   "servers": [
     {
-      "url": "https://test-swagger-cibertec.herokuapp.com"
+      "url": "https://test-swagger-cibertec.herokuapp.com/"
     }
   ],
   "paths": {
-    "/usuarios": {
+    "/usuario": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Some description...",
+            "schema": {
+              "$ref": "#/components/schema/Usuario"
+            }
+          }
+        }
+      }
+    },
+    "/pedido": {
       "get": {
         "description": "",
         "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
           }
         }
       }
@@ -99,6 +117,32 @@
           }
         }
       }
+    },
+    "/pedido-pedido": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "pedido",
+            "in": "body",
+            "description": "Pedido del usuario",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "pedido": {
+                  "type": "string",
+                  "example": "Iphone 14 Plus Max, Macbook Air"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -107,16 +151,7 @@
         "type": "object",
         "properties": {
           "nombre": {
-            "type": "string",
-            "example": "Mario"
-          },
-          "apellido": {
-            "type": "string",
-            "example": "Peralta"
-          },
-          "edad": {
-            "type": "number",
-            "example": 27
+            "type": "string"
           }
         }
       }

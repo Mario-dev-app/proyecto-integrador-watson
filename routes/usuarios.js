@@ -9,6 +9,20 @@ let pedido = {
     pedido: ''
 };
 
+router.get('/usuario', (req, res) => {
+    /*
+    #swagger.responses[200] = {
+        description: 'Some description...',
+        schema: { $ref: '#/components/schema/Usuario' }
+    }
+    */
+    let usuario = {
+        nombre: 'Mario'
+    }
+
+    res.send(usuario);
+})
+
 router.get('/pedido', (req, res) => {
     Pedido.findAll().then((pedidos) => {
         res.json({
@@ -35,14 +49,6 @@ router.post('/pedido-nombre', async (req, res) => {
     if(nombre){
         pedido.nombre = nombre;
         console.log(pedido);
-        /* await Pedido.sync();
-        Pedido.create({
-            nombre: nombre
-        }).then(() => {
-            console.log('Usuario registrado correctamente: ', nombre);
-        }).catch( (err) => {
-            console.log(err);
-        }); */
     }
     res.json({
         ok: true
@@ -61,14 +67,6 @@ router.post('/pedido-telefono', async (req, res) => {
     if(telefono){
         pedido.telefono = telefono;
         console.log(pedido);
-        /* await Pedido.sync();
-        Pedido.create({
-            nombre: telefono
-        }).then(() => {
-            console.log('Usuario registrado correctamente: ', telefono);
-        }).catch( (err) => {
-            console.log(err);
-        }); */
     }
     res.json({
         ok: true
@@ -87,14 +85,6 @@ router.post('/pedido-correo', async (req, res) => {
     if(correo){
         pedido.correo = correo;
         console.log(pedido);
-        /* await Pedido.sync();
-        Pedido.create({
-            nombre: telefono
-        }).then(() => {
-            console.log('Usuario registrado correctamente: ', telefono);
-        }).catch( (err) => {
-            console.log(err);
-        }); */
     }
     res.json({
         ok: true

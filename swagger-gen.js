@@ -8,11 +8,23 @@ const doc = {
     },
     host: 'test-swagger-cibertec.herokuapp.com',
     schemes: ['https'],
-    definitions: {
+    /* definitions: {
         Usuario: {
             nombre: 'Mario',
             apellido: 'Peralta',
             edad: 27
+        }
+    } */
+    components: {
+        '@schemas': {
+            Usuario: {
+                type: 'object',
+                properties: {
+                    nombre: {
+                        type: 'string'
+                    }
+                }
+            }
         }
     }
 };
