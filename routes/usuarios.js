@@ -52,6 +52,8 @@ router.post('/usuario', (req, res) => {
     }
     if(dni === '72552743'){
         res.send(usuario);
+    }else{
+        res.send({ok: false});
     }
 });
 
