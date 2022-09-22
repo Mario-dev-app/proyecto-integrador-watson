@@ -52,8 +52,6 @@ router.post('/usuario', (req, res) => {
     }
     if(dni === '72552743'){
         res.send(usuario);
-    }else{
-        res.send({nombre: 'No se encontró registro con ese DNI'});
     }
 });
 
