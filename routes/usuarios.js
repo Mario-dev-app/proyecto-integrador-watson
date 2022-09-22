@@ -9,6 +9,19 @@ let pedido = {
     pedido: ''
 };
 
+router.post('/date', (req, res) => {
+    /*
+   #swagger.parameters['fecha'] = {
+        in: 'body',
+        description: 'Fecha cualquiera',
+        type: 'string',
+        schema: { fecha: '22/09/2022'}
+   }
+   */
+    let fecha = req.body.fecha;
+    console.log(fecha);
+})
+
 router.post('/usuario', (req, res) => {
     /*
     #swagger.responses[200] = {
