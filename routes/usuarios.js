@@ -46,8 +46,9 @@ router.post('/usuario', (req, res) => {
    */
     let dni = req.body.dni;
     console.log(dni);
+    const nombre = 'Mario Peralta Westreicher';
     let usuario = {
-        nombre: 'Mario Peralta Westreicher'
+        nombre: `Hola, ${nombre}`
     }
     if(dni === '72552743'){
         res.send(usuario);
