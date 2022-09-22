@@ -20,7 +20,10 @@ router.post('/date', (req, res) => {
    */
     let fecha = req.body.fecha;
     console.log(fecha);
-})
+    res.json({
+        ok: true
+    });
+});
 
 router.post('/usuario', (req, res) => {
     /*
