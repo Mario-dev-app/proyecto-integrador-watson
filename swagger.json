@@ -11,42 +11,18 @@
     }
   ],
   "paths": {
-    "/date": {
+    "/existe-paciente": {
       "post": {
         "description": "",
         "parameters": [
           {
-            "name": "fecha",
+            "name": "body",
             "in": "body",
-            "description": "Fecha cualquiera",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "fecha": {
-                  "type": "string",
-                  "example": "22/09/2022"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {}
-      }
-    },
-    "/usuario": {
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "dni",
-            "in": "body",
-            "description": "DNI del usuario",
             "schema": {
               "type": "object",
               "properties": {
                 "dni": {
-                  "type": "string",
-                  "example": "72552743"
+                  "example": "any"
                 }
               }
             }
@@ -54,19 +30,12 @@
         ],
         "responses": {
           "200": {
-            "description": "Some description...",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Usuario"
-                }
-              }
-            }
+            "description": "OK"
           }
         }
       }
     },
-    "/pedido": {
+    "/paciente": {
       "get": {
         "description": "",
         "parameters": [],
@@ -78,74 +47,27 @@
             "description": "Bad Request"
           }
         }
-      }
-    },
-    "/pedido-nombre": {
+      },
       "post": {
         "description": "",
         "parameters": [
           {
-            "name": "nombre",
+            "name": "body",
             "in": "body",
-            "description": "Nombre del usuario",
             "schema": {
               "type": "object",
               "properties": {
                 "nombre": {
-                  "type": "string",
-                  "example": "Mario Peralta"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/pedido-telefono": {
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "telefono",
-            "in": "body",
-            "description": "Teléfono del usuario",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "telefono": {
-                  "type": "string",
-                  "example": "972914057"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/pedido-correo": {
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "correo",
-            "in": "body",
-            "description": "Correo del usuario",
-            "schema": {
-              "type": "object",
-              "properties": {
+                  "example": "any"
+                },
                 "correo": {
-                  "type": "string",
-                  "example": "mariopw4@gmail.com"
+                  "example": "any"
+                },
+                "telefono": {
+                  "example": "any"
+                },
+                "dni": {
+                  "example": "any"
                 }
               }
             }
@@ -154,32 +76,9 @@
         "responses": {
           "200": {
             "description": "OK"
-          }
-        }
-      }
-    },
-    "/pedido-pedido": {
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "pedido",
-            "in": "body",
-            "description": "Pedido del usuario",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "pedido": {
-                  "type": "string",
-                  "example": "Iphone 14 Plus Max, Macbook Air"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
@@ -187,10 +86,19 @@
   },
   "components": {
     "schemas": {
-      "Usuario": {
+      "Paciente": {
         "type": "object",
         "properties": {
           "nombre": {
+            "type": "string"
+          },
+          "correo": {
+            "type": "string"
+          },
+          "telefono": {
+            "type": "string"
+          },
+          "dni": {
             "type": "string"
           }
         }

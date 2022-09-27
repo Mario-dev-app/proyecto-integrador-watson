@@ -9,10 +9,19 @@ const doc = {
     host: 'test-swagger-cibertec.herokuapp.com',
     schemes: ['https'],
     '@definitions': {
-        Usuario: {
+        Paciente: {
             type: 'object',
             properties: {
                 nombre: {
+                    type: 'string'
+                },
+                correo: {
+                    type: 'string'
+                },
+                telefono: {
+                    type: 'string'
+                },
+                dni: {
                     type: 'string'
                 }
             }

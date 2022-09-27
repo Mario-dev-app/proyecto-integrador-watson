@@ -10,14 +10,6 @@ let pedido = {
 };
 
 router.post('/date', (req, res) => {
-    /*
-   #swagger.parameters['fecha'] = {
-        in: 'body',
-        description: 'Fecha cualquiera',
-        type: 'string',
-        schema: { fecha: '22/09/2022'}
-   }
-   */
     let fecha = req.body.fecha;
     console.log(fecha);
     res.json({
@@ -71,13 +63,6 @@ router.get('/pedido', (req, res) => {
 });
 
 router.post('/pedido-nombre', async (req, res) => {
-    /*
-    #swagger.parameters['nombre'] = {
-        in: 'body',
-        description: 'Nombre del usuario',
-        schema: { nombre: 'Mario Peralta'}
-    }
-    */
     const nombre = req.body.nombre;
     if(nombre){
         pedido.nombre = nombre;
@@ -89,13 +74,6 @@ router.post('/pedido-nombre', async (req, res) => {
 });
 
 router.post('/pedido-telefono', async (req, res) => {
-    /*
-    #swagger.parameters['telefono'] = {
-        in: 'body',
-        description: 'Teléfono del usuario',
-        schema: { telefono: '972914057'}
-    }
-    */
     const telefono = req.body.telefono;
     if(telefono){
         pedido.telefono = telefono;
@@ -107,13 +85,6 @@ router.post('/pedido-telefono', async (req, res) => {
 });
 
 router.post('/pedido-correo', async (req, res) => {
-    /*
-    #swagger.parameters['correo'] = {
-        in: 'body',
-        description: 'Correo del usuario',
-        schema: { correo: 'mariopw4@gmail.com'}
-    }
-    */
     const correo = req.body.correo;
     if(correo){
         pedido.correo = correo;
@@ -125,13 +96,6 @@ router.post('/pedido-correo', async (req, res) => {
 });
 
 router.post('/pedido-pedido', async (req, res) => {
-    /*
-    #swagger.parameters['pedido'] = {
-        in: 'body',
-        description: 'Pedido del usuario',
-        schema: { pedido: 'Iphone 14 Plus Max, Macbook Air'}
-    }
-    */
     const pedidoEnviado = req.body.pedido;
     if(pedidoEnviado){
         pedido.pedido = pedidoEnviado;
