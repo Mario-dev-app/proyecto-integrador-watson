@@ -16,13 +16,15 @@
         "description": "",
         "parameters": [
           {
-            "name": "body",
+            "name": "dni",
             "in": "body",
+            "description": "DNI del paciente",
             "schema": {
               "type": "object",
               "properties": {
                 "dni": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "72552743"
                 }
               }
             }
@@ -30,7 +32,14 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Retorna el paciente encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Paciente"
+                }
+              }
+            }
           }
         }
       }

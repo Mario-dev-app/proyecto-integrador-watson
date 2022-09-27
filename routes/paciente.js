@@ -3,13 +3,13 @@ const router = express.Router();
 const Paciente = require('../models/paciente');
 
 /* Validar si un paciente existe*/
-/*
+router.post('/existe-paciente', (req, res) => {
+    /*
     #swagger.responses[200] = {
         description: 'Retorna el paciente encontrado',
         content: {
             "application/json": {
-            schema: { $ref: "#/components/schemas/Paciente" },
-                      
+            schema: { $ref: "#/components/schemas/Paciente" } 
             }
         }
     }
@@ -21,8 +21,8 @@ const Paciente = require('../models/paciente');
         schema: { dni: '72552743'}
    }
    */
-router.post('/existe-paciente', (req, res) => {
     let dni = req.body.dni;
+    console.log(dni);
     Paciente.findOne({attributes: ['id', 'nombre', 'correo', 'telefono', 'dni'] ,where: {dni: dni}}).then((registro) => {
         if(registro){
             res.send({paciente: registro});
