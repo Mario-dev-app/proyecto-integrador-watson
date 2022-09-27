@@ -25,7 +25,7 @@ router.post('/existe-paciente', (req, res) => {
     console.log(dni);
     Paciente.findOne({attributes: ['id', 'nombre', 'correo', 'telefono', 'dni'] ,where: {dni: dni}}).then((registro) => {
         if(registro){
-            res.send({paciente: registro});
+            res.send(registro);
         }else{
             res.send({
                 ok: false,
