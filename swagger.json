@@ -1,4 +1,5 @@
 {
+  "swagger": "2.0",
   "openapi": "3.0.0",
   "info": {
     "title": "API REST de prueba",
@@ -7,7 +8,7 @@
   },
   "servers": [
     {
-      "url": "https://test-swagger-cibertec.herokuapp.com"
+      "url": "https://test-swagger-cibertec.herokuapp.com/"
     }
   ],
   "paths": {
@@ -61,22 +62,57 @@
         "description": "",
         "parameters": [
           {
-            "name": "body",
+            "name": "nombre",
             "in": "body",
+            "description": "Nombre del paciente",
             "schema": {
               "type": "object",
               "properties": {
                 "nombre": {
-                  "example": "any"
-                },
+                  "type": "string",
+                  "example": "Mario Peralta Westreicher"
+                }
+              }
+            }
+          },
+          {
+            "name": "correo",
+            "in": "body",
+            "description": "Correo del paciente",
+            "schema": {
+              "type": "object",
+              "properties": {
                 "correo": {
-                  "example": "any"
-                },
+                  "type": "string",
+                  "example": "mario@gmail.com"
+                }
+              }
+            }
+          },
+          {
+            "name": "telefono",
+            "in": "body",
+            "description": "Telefono del paciente",
+            "schema": {
+              "type": "object",
+              "properties": {
                 "telefono": {
-                  "example": "any"
-                },
+                  "type": "string",
+                  "example": "972914057"
+                }
+              }
+            }
+          },
+          {
+            "name": "dni",
+            "in": "body",
+            "description": "DNI del paciente",
+            "schema": {
+              "type": "object",
+              "properties": {
                 "dni": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "72552743"
                 }
               }
             }
@@ -85,9 +121,110 @@
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/registro/paciente-nombre": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "nombre",
+            "in": "body",
+            "description": "Nombre del paciente",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nombre": {
+                  "type": "string",
+                  "example": "Mario Peralta Westreicher"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/registro/paciente-correo": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "correo",
+            "in": "body",
+            "description": "Correo del paciente",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "correo": {
+                  "type": "string",
+                  "example": "mario@gmail.com"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/registro/paciente-telefono": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "telefono",
+            "in": "body",
+            "description": "Telefono del paciente",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "telefono": {
+                  "type": "string",
+                  "example": "972914057"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/registro/paciente-dni": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "dni",
+            "in": "body",
+            "description": "DNI del paciente",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "dni": {
+                  "type": "string",
+                  "example": "72552743"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         }
       }
