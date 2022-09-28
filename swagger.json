@@ -123,8 +123,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "ok": true,
-                  "message": "Algún mensaje"
+                  "$ref": "#/components/schemas/PacientePostResp"
                 }
               }
             }
@@ -151,6 +150,17 @@
             "type": "string"
           },
           "dni": {
+            "type": "string"
+          }
+        }
+      },
+      "PacientePostResp": {
+        "type": "object",
+        "properties": {
+          "ok": {
+            "type": "boolean"
+          },
+          "message": {
             "type": "string"
           }
         }

@@ -25,6 +25,17 @@ const doc = {
                     type: 'string'
                 }
             }
+        },
+        PacientePostResp :{
+            type: 'object',
+            properties: {
+                ok: {
+                    type: 'boolean'
+                },
+                message: {
+                    type: 'string'
+                }
+            }
         }
     }
 };

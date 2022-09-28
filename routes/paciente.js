@@ -91,10 +91,7 @@ router.post('/paciente', (req, res) => {
         description: 'Respuesta del registro de paciente',
         content: {
             "application/json": {
-            schema: {
-                ok: true,
-                message: 'Algún mensaje'
-                }
+            schema: { $ref: "#/components/schemas/PacientePostResp" } 
             }
         }
     }
