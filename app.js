@@ -16,7 +16,11 @@ sequelize.authenticate().then(() => {
     console.log(err);
 });
 
-sequelize.sync({force: true});
+sequelize.sync({force: true}).then(() =>{
+    console.log('Tablas sincronizadas');
+}).catch((err) => {
+    console.log(err);
+});
 
 app.listen(process.env.PORT || 3000, () => {
     console.log('Servidor levantado');
