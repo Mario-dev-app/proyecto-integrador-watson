@@ -16,6 +16,12 @@ sequelize.authenticate().then(() => {
     console.log(err);
 });
 
+const generarTablas = async () => {
+    await sequelize.sync({force: true});
+}
+
+generarTablas();
+
 app.listen(process.env.PORT || 3000, () => {
     console.log('Servidor levantado');
 });
