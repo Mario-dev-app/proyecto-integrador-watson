@@ -16,7 +16,7 @@ sequelize.authenticate().then(() => {
     console.log(err);
 });
 
-await sequelize.sync({force: true});
+sequelize.sync({force: true});
 
 app.listen(process.env.PORT || 3000, () => {
     console.log('Servidor levantado');
