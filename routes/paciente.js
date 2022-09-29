@@ -148,4 +148,13 @@ router.delete('/paciente', (req, res) => {
     });
 });
 
+/* Eliminar y volver a crear la tabla paciente */
+router.get('/paciente/reset', (req, res) => {
+    Paciente.sync({force: true});
+    res.json({
+        ok: true,
+        message: 'Tabla paciente eliminada y creada nuevamente'
+    });
+});
+
 module.exports = router;
