@@ -112,10 +112,9 @@ router.post('/paciente', (req, res) => {
             message: 'Paciente registrado correctamente'
         });
     }).catch((err) => {
-        let tempMessage = (err.errors) ? err.errors.message : 'Hubo un error al registrar el paciente'; 
         res.status(500).json({
             ok: false,
-            message: tempMessage
+            message: err
         });
     })
 });
