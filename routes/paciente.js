@@ -119,4 +119,34 @@ router.post('/paciente', (req, res) => {
     })
 });
 
+/* Eliminar un paciente */
+router.delete('/paciente', (req, res) => {
+    let dni = req.body.dni;
+    Paciente.findOne({where: {dni: dni}}).then((paciente) => {
+        if(paciente){
+            Paciente.destroy({where: {dni: dni}}).then(() => {
+                res.json({
+                    ok: true,
+                    message: 'Paciente eliminado de la BD correctamente'
+                });
+            }).catch((err) => {
+                res.status(400).json({
+                    ok: false,
+                    message: err
+                });
+            });
+        }else{
+            res.status(400).json({
+                ok: false,
+                message: `Error al buscar paciente con DNI ${dni}`
+            });
+        }
+    }).catch((err) => {
+        res.status(400).json({
+            ok: false,
+            message: err
+        });
+    });
+});
+
 module.exports = router;
