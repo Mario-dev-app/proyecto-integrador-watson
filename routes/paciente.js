@@ -100,7 +100,7 @@ router.post('/paciente', (req, res) => {
     let correo = req.body.correo;
     let telefono = req.body.telefono;
     let dni = req.body.dni;
-    Paciente.sync({force: true});
+    Paciente.sync();
     Paciente.create({
         nombre: nombre,
         correo: correo,
