@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const sequelize = require('./db/connection');
+const setEspecialidades = require('./utils/set-especialidades');
 
 app.use(express.json());
 
@@ -15,6 +16,11 @@ sequelize.authenticate().then(() => {
 }).catch((err) => {
     console.log(err);
 });
+
+(async() => {
+    await sequelize.sync({force: true});
+    setEspecialidades();
+})();
 
 app.listen(process.env.PORT || 3000, () => {
     console.log('Servidor levantado');
