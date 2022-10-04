@@ -41,7 +41,7 @@
               }
             }
           },
-          "400": {
+          "500": {
             "description": "Retorna el mensaje de error",
             "content": {
               "application/json": {

@@ -16,16 +16,6 @@ router.post('/existe-paciente', (req, res) => {
     }
     */
    /*
-   #swagger.responses[500] = {
-        description: 'Retorna el mensaje de error',
-        content: {
-            "application/json": {
-            schema: { $ref: "#/components/schemas/PacientePostResp" } 
-            }
-        }
-    }
-    */
-   /*
    #swagger.parameters['dni'] = {
         in: 'body',
         description: 'DNI del paciente',
@@ -37,7 +27,7 @@ router.post('/existe-paciente', (req, res) => {
         if(registro){
             res.send(registro);
         }else{
-            res.status(500).send({
+            res.status(400).send({
                 ok: false,
                 message: 'No se encontró registro con ese DNI'
             });
@@ -82,7 +72,7 @@ router.post('/existe-fake-reniec', (req, res) => {
     }
    }).catch((err) => {
     console.log(err);
-    res.status(400).send({
+    res.status(500).send({
         ok: false,
         message: 'Error al validar el DNI'
     });
