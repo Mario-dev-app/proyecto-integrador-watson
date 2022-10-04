@@ -16,7 +16,7 @@ router.post('/existe-paciente', (req, res) => {
     }
     */
    /*
-   #swagger.responses[400] = {
+   #swagger.responses[500] = {
         description: 'Retorna el mensaje de error',
         content: {
             "application/json": {
@@ -37,14 +37,14 @@ router.post('/existe-paciente', (req, res) => {
         if(registro){
             res.send(registro);
         }else{
-            res.status(400).send({
+            res.status(500).send({
                 ok: false,
                 message: 'No se encontró registro con ese DNI'
             });
         }
     }).catch((err) => {
         console.log(err);
-        res.status(400).send({
+        res.status(500).send({
             ok: false,
             message: 'Error al validar el DNI'
         });

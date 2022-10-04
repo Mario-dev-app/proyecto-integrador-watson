@@ -41,7 +41,7 @@ const doc = {
             type: 'object',
             properties: {
                 dni: {
-                    tyep: 'string'
+                    type: 'string'
                 },
                 nombre: {
                     type: 'string'

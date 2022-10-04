@@ -40,6 +40,52 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Retorna el mensaje de error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PacientePostResp"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/existe-fake-reniec": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "dni",
+            "in": "body",
+            "description": "DNI de la persona",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "dni": {
+                  "type": "string",
+                  "example": "72552743"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna la persona encontrada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FakeReniec"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
           }
         }
       }
@@ -132,6 +178,99 @@
             "description": "Internal Server Error"
           }
         }
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "dni": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/paciente/reset": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/especialidad": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/turnos": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/cita": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "especialidad",
+            "in": "body",
+            "description": "Especialidad para la cita",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "especialidad": {
+                  "type": "string",
+                  "example": "psicología"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
       }
     }
   },
@@ -161,6 +300,20 @@
             "type": "boolean"
           },
           "message": {
+            "type": "string"
+          }
+        }
+      },
+      "FakeReniec": {
+        "type": "object",
+        "properties": {
+          "dni": {
+            "type": "string"
+          },
+          "nombre": {
+            "type": "string"
+          },
+          "apellidos": {
             "type": "string"
           }
         }
