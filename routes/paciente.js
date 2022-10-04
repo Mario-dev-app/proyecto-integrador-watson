@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Paciente = require('../models/paciente');
+const FakeReniec = require('../models/fakeReniec');
 
 /* Validar si un paciente existe*/
 router.post('/existe-paciente', (req, res) => {
@@ -15,6 +16,16 @@ router.post('/existe-paciente', (req, res) => {
     }
     */
    /*
+   #swagger.responses[400] = {
+        description: 'Retorna el mensaje de error',
+        content: {
+            "application/json": {
+            schema: { $ref: "#/components/schemas/PacientePostResp" } 
+            }
+        }
+    }
+    */
+   /*
    #swagger.parameters['dni'] = {
         in: 'body',
         description: 'DNI del paciente',
@@ -22,22 +33,60 @@ router.post('/existe-paciente', (req, res) => {
    }
    */
     let dni = req.body.dni;
-    console.log(dni);
     Paciente.findOne({attributes: ['id', 'nombre', 'correo', 'telefono', 'dni'] ,where: {dni: dni}}).then((registro) => {
         if(registro){
             res.send(registro);
         }else{
-            res.send({
+            res.status(400).send({
                 ok: false,
                 message: 'No se encontró registro con ese DNI'
             });
         }
     }).catch((err) => {
-        res.send({
-            error: err,
+        console.log(err);
+        res.status(400).send({
+            ok: false,
             message: 'Error al validar el DNI'
         });
     });
+});
+
+/* Si el paciente no existe, validar si se encuentra en FakeReniec */
+router.post('/existe-fake-reniec', (req, res) => {
+    /*
+    #swagger.responses[200] = {
+        description: 'Retorna la persona encontrada',
+        content: {
+            "application/json": {
+            schema: { $ref: "#/components/schemas/FakeReniec" } 
+            }
+        }
+    }
+    */
+   /*
+   #swagger.parameters['dni'] = {
+        in: 'body',
+        description: 'DNI de la persona',
+        schema: { dni: '72552743'}
+   }
+   */
+   let dni = req.body.dni;
+   FakeReniec.findOne({attributes: ['dni', 'nombre', 'apellidos'], where: {dni: dni}}).then((registro) => {
+    if(registro){
+        res.send(registro);
+    }else{
+        res.status(400).send({
+            ok: false,
+            message: 'No se encontró registro con ese DNI'
+        });
+    }
+   }).catch((err) => {
+    console.log(err);
+    res.status(400).send({
+        ok: false,
+        message: 'Error al validar el DNI'
+    });
+   })
 });
 
 /* Obtener todos los pacientes */
@@ -54,6 +103,8 @@ router.get('/paciente', (req, res) => {
         });
     });
 });
+
+
 
 
 /* Registrar un paciente */

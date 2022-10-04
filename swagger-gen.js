@@ -36,6 +36,20 @@ const doc = {
                     type: 'string'
                 }
             }
+        },
+        FakeReniec: {
+            type: 'object',
+            properties: {
+                dni: {
+                    tyep: 'string'
+                },
+                nombre: {
+                    type: 'string'
+                },
+                apellidos: {
+                    type: 'string'
+                }
+            }
         }
     }
 };

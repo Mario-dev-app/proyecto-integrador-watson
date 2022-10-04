@@ -18,6 +18,8 @@ const Cita = sequelize.define('Cita', {
         type: DataTypes.STRING,
         allowNull: false
     }
+    /* Agregar un campo más que sea booleano para indicar si la cita
+    está pendiente */
 });
 
 module.exports = Cita;
