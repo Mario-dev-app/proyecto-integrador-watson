@@ -2,7 +2,8 @@ const Paciente = require('../models/paciente');
 
 const pacientes = [
     {
-        nombre: 'Mario Peralta Westreicher',
+        nombre: 'Mario',
+        apellidos: 'Peralta Westreicher',
         telefono: '972914057',
         correo: 'mariopw4@gmail.com',
         dni: '72552743'
