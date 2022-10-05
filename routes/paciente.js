@@ -41,44 +41,6 @@ router.post('/existe-paciente', (req, res) => {
     });
 });
 
-/* Si el paciente no existe, validar si se encuentra en FakeReniec */
-router.post('/existe-fake-reniec', (req, res) => {
-    /*
-    #swagger.responses[200] = {
-        description: 'Retorna la persona encontrada',
-        content: {
-            "application/json": {
-            schema: { $ref: "#/components/schemas/FakeReniec" } 
-            }
-        }
-    }
-    */
-   /*
-   #swagger.parameters['dni'] = {
-        in: 'body',
-        description: 'DNI de la persona',
-        schema: { dni: '72552743'}
-   }
-   */
-   let dni = req.body.dni;
-   FakeReniec.findOne({attributes: ['dni', 'nombre', 'apellidos'], where: {dni: dni}}).then((registro) => {
-    if(registro){
-        res.send(registro);
-    }else{
-        res.status(400).send({
-            ok: false,
-            message: 'No se encontró registro con ese DNI'
-        });
-    }
-   }).catch((err) => {
-    console.log(err);
-    res.status(500).send({
-        ok: false,
-        message: 'Error al validar el DNI'
-    });
-   })
-});
-
 /* Obtener todos los pacientes */
 router.get('/paciente', (req, res) => {
     Paciente.findAll().then((resp) => {
@@ -95,15 +57,20 @@ router.get('/paciente', (req, res) => {
 });
 
 
-
-
 /* Registrar un paciente */
 router.post('/paciente', (req, res) => {
     /*
     #swagger.parameters['nombre'] = {
         in: 'body',
         description: 'Nombre del paciente',
-        schema: { nombre: 'Mario Peralta Westreicher'}
+        schema: { nombre: 'Peralta Westreicher'}
+    }
+    */
+   /*
+    #swagger.parameters['apellidos'] = {
+        in: 'body',
+        description: 'Apellidos del paciente',
+        schema: { apellidos: 'Peralta Westreicher'}
     }
     */
     /*
@@ -138,11 +105,13 @@ router.post('/paciente', (req, res) => {
     }
     */
     let nombre = req.body.nombre;
+    let apellidos = req.body.apellidos;
     let correo = req.body.correo;
     let telefono = req.body.telefono;
     let dni = req.body.dni;
     Paciente.create({
         nombre: nombre,
+        apellidos: apellidos,
         correo: correo,
         telefono: telefono,
         dni: dni

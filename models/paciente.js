@@ -6,6 +6,10 @@ const Paciente = sequelize.define('Paciente', {
         type: DataTypes.STRING,
         allowNull: false
     },
+    apellidos: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
     telefono: {
         type: DataTypes.STRING,
         allowNull: false

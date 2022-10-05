@@ -4,7 +4,8 @@ const cors = require('cors');
 const sequelize = require('./db/connection');
 const setEspecialidades = require('./utils/set-especialidades');
 const setTurnos = require('./utils/set-turnos');
-const setPacientes = require('./utils/set-pacientes');
+/* const setPacientes = require('./utils/set-pacientes'); */
+const setFakeReniec = require('./utils/set-fake-reniec');
 
 app.use(express.json());
 
@@ -23,7 +24,8 @@ sequelize.authenticate().then(() => {
     await sequelize.sync({force: true});
     setEspecialidades();
     setTurnos();
-    setPacientes();
+    /* setPacientes(); */
+    setFakeReniec();
 })();
 
 app.listen(process.env.PORT || 3000, () => {

@@ -41,51 +41,11 @@
               }
             }
           },
-          "500": {
-            "description": "Retorna el mensaje de error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PacientePostResp"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/existe-fake-reniec": {
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "dni",
-            "in": "body",
-            "description": "DNI de la persona",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "dni": {
-                  "type": "string",
-                  "example": "72552743"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Retorna la persona encontrada",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/FakeReniec"
-                }
-              }
-            }
-          },
           "400": {
             "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
@@ -115,7 +75,21 @@
               "properties": {
                 "nombre": {
                   "type": "string",
-                  "example": "Mario Peralta Westreicher"
+                  "example": "Peralta Westreicher"
+                }
+              }
+            }
+          },
+          {
+            "name": "apellidos",
+            "in": "body",
+            "description": "Apellidos del paciente",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "apellidos": {
+                  "type": "string",
+                  "example": "Peralta Westreicher"
                 }
               }
             }
@@ -263,6 +237,59 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/existe-fake-reniec": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "dni",
+            "in": "body",
+            "description": "DNI de la persona",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "dni": {
+                  "type": "string",
+                  "example": "72552743"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna la persona encontrada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FakeReniec"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/fake-reniec": {
+      "get": {
+        "description": "",
+        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
