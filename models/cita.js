@@ -19,8 +19,7 @@ const Cita = sequelize.define('Cita', {
         allowNull: false
     },
     atendida: {
-        tyep: DataTypes.BOOLEAN,
-        allowNull: false,
+        type: DataTypes.BOOLEAN,
         defaultValue: false
     }
 });

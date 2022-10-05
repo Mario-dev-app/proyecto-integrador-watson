@@ -3,7 +3,7 @@ const router = express.Router();
 const Especialidad = require('../models/especialidad');
 
 /* Obtener todas las especialidades */
-router.get('/especialidad', (req, res) => {
+router.get('/especialidades', (req, res) => {
     Especialidad.findAll().then((resp) => {
         res.json({
             ok: true,

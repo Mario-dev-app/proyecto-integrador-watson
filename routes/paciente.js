@@ -42,7 +42,7 @@ router.post('/existe-paciente', (req, res) => {
 });
 
 /* Obtener todos los pacientes */
-router.get('/paciente', (req, res) => {
+router.get('/pacientes', (req, res) => {
     Paciente.findAll().then((resp) => {
         res.json({
             ok: true,

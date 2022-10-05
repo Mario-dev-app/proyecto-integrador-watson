@@ -36,4 +36,19 @@ router.post('/cita', (req, res) => {
     });
 });
 
+/* Obtener citas */
+router.get('/citas', (req, res) => {
+    Cita.findAll().then((resp) => {
+        res.json({
+            ok: true,
+            data: resp
+        });
+    }).catch( (err) => {
+        res.status(400).json({
+            ok: false,
+            message: err
+        });
+    });
+})
+
 module.exports = router;
