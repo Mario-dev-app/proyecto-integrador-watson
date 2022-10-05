@@ -25,7 +25,7 @@ sequelize.authenticate().then(() => {
     await sequelize.sync({force: true});
     setEspecialidades();
     setTurnos();
-    /* setPacientes(); */
+    setPacientes();
     setFakeReniec();
     setCitas();
 })();
