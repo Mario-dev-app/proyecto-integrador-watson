@@ -17,7 +17,7 @@ router.post('/cita', (req, res) => {
     /* Obtenemos el código de la especialidad */
     Especialidad.findOne({where: { nombre: especialidadNombre}, attributes: ['codigo']})
     .then((resp) => {
-        Cita.findAll({where: {especialidad: resp.codigo}}).then((resp) => {
+        Cita.findAll({where: {especialidad: resp.codigo, atendida: false}}).then((resp) => {
             if(resp.length == 0){
                 res.json({
                     message:'No hay citas agendadas para esa especialidad'
