@@ -6,6 +6,7 @@ const setEspecialidades = require('./utils/set-especialidades');
 const setTurnos = require('./utils/set-turnos');
 /* const setPacientes = require('./utils/set-pacientes'); */
 const setFakeReniec = require('./utils/set-fake-reniec');
+const setCitas = require('./utils/set-citas');
 
 app.use(express.json());
 
@@ -26,6 +27,7 @@ sequelize.authenticate().then(() => {
     setTurnos();
     /* setPacientes(); */
     setFakeReniec();
+    setCitas();
 })();
 
 app.listen(process.env.PORT || 3000, () => {

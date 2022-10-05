@@ -17,9 +17,12 @@ const Cita = sequelize.define('Cita', {
     fecha: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    atendida: {
+        tyep: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
     }
-    /* Agregar un campo más que sea booleano para indicar si la cita
-    está pendiente */
 });
 
 module.exports = Cita;
