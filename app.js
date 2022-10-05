@@ -4,7 +4,7 @@ const cors = require('cors');
 const sequelize = require('./db/connection');
 const setEspecialidades = require('./utils/set-especialidades');
 const setTurnos = require('./utils/set-turnos');
-/* const setPacientes = require('./utils/set-pacientes'); */
+const setPacientes = require('./utils/set-pacientes');
 const setFakeReniec = require('./utils/set-fake-reniec');
 const setCitas = require('./utils/set-citas');
 
