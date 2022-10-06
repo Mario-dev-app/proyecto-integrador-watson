@@ -37,6 +37,17 @@ const doc = {
                 }
             }
         },
+        ArrayResponse: {
+            type: 'object',
+            properties: {
+                ok: {
+                    type: 'boolean'
+                },
+                message: {
+                    type: 'array'
+                }
+            }
+        },
         FakeReniec: {
             type: 'object',
             properties: {

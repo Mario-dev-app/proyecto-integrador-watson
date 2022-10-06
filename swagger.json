@@ -50,7 +50,7 @@
         }
       }
     },
-    "/paciente": {
+    "/pacientes": {
       "get": {
         "description": "",
         "parameters": [],
@@ -62,7 +62,9 @@
             "description": "Bad Request"
           }
         }
-      },
+      }
+    },
+    "/paciente": {
       "post": {
         "description": "",
         "parameters": [
@@ -143,7 +145,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PacientePostResp"
+                  "$ref": "#/components/schemas/BasicResponse"
                 }
               }
             }
@@ -190,7 +192,7 @@
         }
       }
     },
-    "/especialidad": {
+    "/especialidades": {
       "get": {
         "description": "",
         "parameters": [],
@@ -218,7 +220,7 @@
         }
       }
     },
-    "/cita": {
+    "/get-horarios-1": {
       "post": {
         "description": "",
         "parameters": [
@@ -237,6 +239,86 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "Respuesta del primer flujo para obtener horarios",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BasicResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/get-horarios-2": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Respuesta del segundo flujo para obtener horarios",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BasicResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/get-horarios-3": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Respuesta del tercer flujo para obtener horarios",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ArrayResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/turnos-fecha": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "fecha",
+            "in": "body",
+            "description": "Fecha para la cita",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "fecha": {
+                  "type": "string",
+                  "example": "10-10-2022"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/citas": {
+      "get": {
+        "description": "",
+        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -320,7 +402,7 @@
           }
         }
       },
-      "PacientePostResp": {
+      "BasicResponse": {
         "type": "object",
         "properties": {
           "ok": {
@@ -328,6 +410,17 @@
           },
           "message": {
             "type": "string"
+          }
+        }
+      },
+      "ArrayResponse": {
+        "type": "object",
+        "properties": {
+          "ok": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "array"
           }
         }
       },
