@@ -25,7 +25,13 @@ router.post('/posibles-horarios', (req, res) => {
     Especialidad.findOne({ attributes: ['codigo'], where: { nombre: especialidadNombre } }).then(({ codigo }) => {
         especialidadCodigo = codigo;
         console.log(especialidadCodigo);
-    }).catch(err => console.log);
+    }).catch(err => {
+        console.log(err);
+        res.json({
+            ok: false,
+            message: 'Error al intentar obtener el código de la especialidad'
+        });
+    });
 
     let messageTemp = '';
     const posiblesDiasIf = obtenerPosiblesDias();
@@ -37,6 +43,7 @@ router.post('/posibles-horarios', (req, res) => {
         }
     });
     res.json({
+        ok: true,
         message: messageTemp
     });
 });
