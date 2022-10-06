@@ -21,11 +21,24 @@ router.post('/posibles-horarios', (req, res) => {
         schema: { especialidad: 'psicología'}
    }
    */
-   let especialidadNombre = req.body.especialidad;
-   Especialidad.findOne({attributes: ['codigo'] ,where: {nombre: especialidadNombre}}).then(({codigo}) => {
-    especialidadCodigo = codigo;
-    console.log(especialidadCodigo);
-   }).catch(err => console.log);
+    let especialidadNombre = req.body.especialidad;
+    Especialidad.findOne({ attributes: ['codigo'], where: { nombre: especialidadNombre } }).then(({ codigo }) => {
+        especialidadCodigo = codigo;
+        console.log(especialidadCodigo);
+    }).catch(err => console.log);
+
+    let messageTemp = '';
+    const posiblesDiasIf = obtenerPosiblesDias();
+    posiblesDiasIf.forEach((dia, i) => {
+        if (i == 0) {
+            messageTemp = messageTemp + dia;
+        } else {
+            messageTemp = messageTemp + ', ' + dia;
+        }
+    });
+    res.json({
+        message: messageTemp
+    });
 });
 
 /* Obtener los turnos disponibles por una fecha */
