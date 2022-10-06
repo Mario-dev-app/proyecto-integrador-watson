@@ -24,8 +24,8 @@ router.post('/posibles-horarios', (req, res) => {
    let especialidadNombre = req.body.especialidad;
    Especialidad.findOne({attributes: ['codigo'] ,where: {nombre: especialidadNombre}}).then(({codigo}) => {
     especialidadCodigo = codigo;
+    console.log(especialidadCodigo);
    }).catch(err => console.log);
-   console.log(especialidadCodigo);
 });
 
 /* Obtener los turnos disponibles por una fecha */
