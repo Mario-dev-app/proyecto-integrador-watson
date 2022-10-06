@@ -7,13 +7,17 @@ const obtenerPosiblesDias = require('../utils/get-posibles-dias');
 
 let especialidadCodigo;
 
+let posiblesDias = [];
+
+let indicesToRemove;
+
 let codigoxHora = [
     { codigo: 'M1', hora: '8:00' }, { codigo: 'M2', hora: '9:00' }, { codigo: 'M3', hora: '10:00' }, { codigo: 'M4', hora: '11:00' },
     { codigo: 'T1', hora: '14:00' }, { codigo: 'T2', hora: '15:00' }, { codigo: 'T3', hora: '16:00' }, { codigo: 'T4', hora: '17:00' }
 ]
 
 /* Obtener código de especialidad e indicar posibles fechas para la reserva de citas */
-router.post('/posibles-horarios', (req, res) => {
+router.post('/get-horarios-1', (req, res) => {
     /*
    #swagger.parameters['especialidad'] = {
         in: 'body',
@@ -21,10 +25,26 @@ router.post('/posibles-horarios', (req, res) => {
         schema: { especialidad: 'psicología'}
    }
    */
+  /*
+    #swagger.responses[200] = {
+        description: 'Respuesta del primer flujo para obtener horarios',
+        content: {
+            "application/json": {
+            schema: { $ref: "#/components/schemas/BasicResponse" } 
+            }
+        }
+    }
+    */
     let especialidadNombre = req.body.especialidad;
     Especialidad.findOne({ attributes: ['codigo'], where: { nombre: especialidadNombre } }).then(({ codigo }) => {
         especialidadCodigo = codigo;
-        console.log(especialidadCodigo);
+        posiblesDias = obtenerPosiblesDias();
+        console.log("Especialidad: ", especialidadNombre);
+        console.log("Código: ", especialidadCodigo);
+        res.json({
+            ok: true,
+            message: 'Se setearon la especialidad y los posibles días'
+        });
     }).catch(err => {
         console.log(err);
         res.json({
@@ -32,19 +52,67 @@ router.post('/posibles-horarios', (req, res) => {
             message: 'Error al intentar obtener el código de la especialidad'
         });
     });
+});
 
-    let messageTemp = '';
-    const posiblesDiasIf = obtenerPosiblesDias();
-    posiblesDiasIf.forEach((dia, i) => {
-        if (i == 0) {
-            messageTemp = messageTemp + dia;
-        } else {
-            messageTemp = messageTemp + ', ' + dia;
+/* if ok == true */
+router.get('/get-horarios-2', (req, res) => {
+    /*
+    #swagger.responses[200] = {
+        description: 'Respuesta del segundo flujo para obtener horarios',
+        content: {
+            "application/json": {
+            schema: { $ref: "#/components/schemas/BasicResponse" } 
+            }
+        }
+    }
+    */
+    indicesToRemove = [];
+    posiblesDias.forEach(async(dia, i) => {
+        let turnosOcupadosxDia = await Cita.findAll({attributes: ['turno'] ,where: {fecha: dia, especialidad: especialidadCodigo, atendida: false}});
+
+        let turnosTempArr = [];
+        turnosOcupadosxDia.forEach(({turno}) => {
+            turnosTempArr.push(turno);
+        });
+
+        if(turnosTempArr.length == codigoxHora.length){
+            indicesToRemove.push(i);
         }
     });
     res.json({
         ok: true,
-        message: messageTemp
+        message: 'Se obtuvo correctamente los índices a remover'
+    });
+});
+
+/* Remover índices de fechas ocupadas */
+router.get('/get-horarios-3', (req, res) => {
+    /*
+    #swagger.responses[200] = {
+        description: 'Respuesta del tercer flujo para obtener horarios',
+        content: {
+            "application/json": {
+            schema: { $ref: "#/components/schemas/BasicResponse" } 
+            }
+        }
+    }
+    */
+    indicesToRemove.forEach(indice => {
+        posiblesDias.splice(indice, 1);
+    });
+    
+    let message = '';
+    posiblesDias.forEach((dia, i) => {
+        if(i == 0){
+            message = message + dia;
+        }else{
+            message = message + ', ' + dia;
+        }
+    });
+
+    res.json({
+        ok: true,
+        message: message
     });
 });
 

@@ -26,7 +26,7 @@ const doc = {
                 }
             }
         },
-        PacientePostResp :{
+        BasicResponse :{
             type: 'object',
             properties: {
                 ok: {
