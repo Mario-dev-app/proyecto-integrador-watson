@@ -43,6 +43,13 @@ router.post('/posibles-horarios', (req, res) => {
 
 /* Obtener los turnos disponibles por una fecha */
 router.post('/turnos-fecha', async (req, res) => {
+    /*
+   #swagger.parameters['fecha'] = {
+        in: 'body',
+        description: 'Fecha para la cita',
+        schema: { fecha: '10-10-2022'}
+   }
+   */
     let posibleFecha = req.body.fecha;
     const turnos = await Turno.findAll({ attributes: ['codigo'] });
     let turnosArr = [];
