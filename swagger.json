@@ -281,7 +281,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ArrayResponse"
+                  "$ref": "#/components/schemas/BasicResponse"
                 }
               }
             }
