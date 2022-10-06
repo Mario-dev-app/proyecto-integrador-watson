@@ -5,26 +5,86 @@ const citas = [
         dni: '72552743',
         especialidad: 'ESP1',
         turno: 'M1',
-        fecha: '09-10-2022'
+        fecha: '10-10-2022'
     },
     {
         dni: '72552743',
-        especialidad: 'ESP4',
+        especialidad: 'ESP1',
+        turno: 'M2',
+        fecha: '10-10-2022'
+    },
+    {
+        dni: '72552743',
+        especialidad: 'ESP1',
         turno: 'M3',
-        fecha: '09-11-2022'
+        fecha: '10-10-2022'
+    },
+    {
+        dni: '72552743',
+        especialidad: 'ESP1',
+        turno: 'M4',
+        fecha: '10-10-2022'
     },
     {
         dni: '72552743',
         especialidad: 'ESP1',
         turno: 'T1',
-        fecha: '09-12-2022'
+        fecha: '10-10-2022'
+    },
+    {
+        dni: '72552743',
+        especialidad: 'ESP1',
+        turno: 'T2',
+        fecha: '10-10-2022'
     },
     {
         dni: '72552743',
         especialidad: 'ESP1',
         turno: 'T3',
-        fecha: '09-13-2022'
-    }
+        fecha: '10-10-2022'
+    },
+    {
+        dni: '72552743',
+        especialidad: 'ESP1',
+        turno: 'T4',
+        fecha: '10-10-2022'
+    },
+    {
+        dni: '72552743',
+        especialidad: 'ESP4',
+        turno: 'M3',
+        fecha: '10-11-2022'
+    },
+    {
+        dni: '72552743',
+        especialidad: 'ESP1',
+        turno: 'T1',
+        fecha: '10-12-2022'
+    },
+    {
+        dni: '72552743',
+        especialidad: 'ESP1',
+        turno: 'T4',
+        fecha: '10-12-2022'
+    },
+    {
+        dni: '72552743',
+        especialidad: 'ESP1',
+        turno: 'T3',
+        fecha: '10-13-2022'
+    },
+    {
+        dni: '72552743',
+        especialidad: 'ESP1',
+        turno: 'M1',
+        fecha: '10-13-2022'
+    },
+    {
+        dni: '72552743',
+        especialidad: 'ESP1',
+        turno: 'M3',
+        fecha: '10-13-2022'
+    },
 ];
 
 const setCitas = () => {

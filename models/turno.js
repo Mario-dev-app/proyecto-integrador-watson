@@ -12,7 +12,7 @@ const Turno = sequelize.define('Turno', {
         unique: true
     },
     hora: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false
     }
 });
