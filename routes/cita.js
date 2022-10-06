@@ -92,7 +92,7 @@ router.get('/get-horarios-3', (req, res) => {
         description: 'Respuesta del tercer flujo para obtener horarios',
         content: {
             "application/json": {
-            schema: { $ref: "#/components/schemas/ArrayResponse" } 
+            schema: { $ref: "#/components/schemas/BasicResponse" } 
             }
         }
     }
@@ -101,18 +101,18 @@ router.get('/get-horarios-3', (req, res) => {
         posiblesDias.splice(indice, 1);
     });
     
-    /* let message = '';
+    let message = '';
     posiblesDias.forEach((dia, i) => {
         if(i == 0){
             message = message + dia;
         }else{
             message = message + ', ' + dia;
         }
-    }); */
+    });
 
     res.json({
         ok: true,
-        message: posiblesDias
+        message: message
     });
 });
 
