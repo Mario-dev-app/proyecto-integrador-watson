@@ -25,16 +25,16 @@ router.post('/get-horarios-1', (req, res) => {
         schema: { especialidad: 'psicología'}
    }
    */
-  /*
-    #swagger.responses[200] = {
-        description: 'Respuesta del primer flujo para obtener horarios',
-        content: {
-            "application/json": {
-            schema: { $ref: "#/components/schemas/BasicResponse" } 
-            }
-        }
-    }
-    */
+    /*
+      #swagger.responses[200] = {
+          description: 'Respuesta del primer flujo para obtener horarios',
+          content: {
+              "application/json": {
+              schema: { $ref: "#/components/schemas/BasicResponse" } 
+              }
+          }
+      }
+      */
     let especialidadNombre = req.body.especialidad;
     Especialidad.findOne({ attributes: ['codigo'], where: { nombre: especialidadNombre } }).then(({ codigo }) => {
         especialidadCodigo = codigo;
@@ -67,15 +67,15 @@ router.get('/get-horarios-2', (req, res) => {
     }
     */
     indicesToRemove = [];
-    posiblesDias.forEach(async(dia, i) => {
-        let turnosOcupadosxDia = await Cita.findAll({attributes: ['turno'] ,where: {fecha: dia, especialidad: especialidadCodigo, atendida: false}});
+    posiblesDias.forEach(async (dia, i) => {
+        let turnosOcupadosxDia = await Cita.findAll({ attributes: ['turno'], where: { fecha: dia, especialidad: especialidadCodigo, atendida: false } });
 
         let turnosTempArr = [];
-        turnosOcupadosxDia.forEach(({turno}) => {
+        turnosOcupadosxDia.forEach(({ turno }) => {
             turnosTempArr.push(turno);
         });
 
-        if(turnosTempArr.length == codigoxHora.length){
+        if (turnosTempArr.length == codigoxHora.length) {
             indicesToRemove.push(i);
         }
     });
@@ -100,12 +100,12 @@ router.get('/get-horarios-3', (req, res) => {
     indicesToRemove.forEach(indice => {
         posiblesDias.splice(indice, 1);
     });
-    
+
     let message = '';
     posiblesDias.forEach((dia, i) => {
-        if(i == 0){
+        if (i == 0) {
             message = message + dia;
-        }else{
+        } else {
             message = message + ', ' + dia;
         }
     });
@@ -119,12 +119,22 @@ router.get('/get-horarios-3', (req, res) => {
 /* Obtener los turnos disponibles por una fecha */
 router.post('/turnos-fecha', async (req, res) => {
     /*
-   #swagger.parameters['fecha'] = {
-        in: 'body',
-        description: 'Fecha para la cita',
-        schema: { fecha: '10-10-2022'}
-   }
+    #swagger.parameters['fecha'] = {
+            in: 'body',
+            description: 'Fecha para la cita',
+            schema: { fecha: '10-10-2022'}
+    }
    */
+    /*
+      #swagger.responses[200] = {
+          description: 'Respuesta de los turnos por fecha según especialidad',
+          content: {
+              "application/json": {
+              schema: { $ref: "#/components/schemas/BasicResponse" } 
+              }
+          }
+      }
+      */
     let posibleFecha = req.body.fecha;
     const turnos = await Turno.findAll({ attributes: ['codigo'] });
     let turnosArr = [];

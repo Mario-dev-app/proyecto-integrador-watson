@@ -310,7 +310,14 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Respuesta de los turnos por fecha según especialidad",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BasicResponse"
+                }
+              }
+            }
           }
         }
       }
