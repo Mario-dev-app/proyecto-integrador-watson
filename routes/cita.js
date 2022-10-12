@@ -213,8 +213,7 @@ router.post('/valida-horario', (req, res) => {
             }
         }
         */
-    let hora = req.boby.hora.trim();
-    console.log(hora);
+    let hora = req.body.hora.trim();
     if (!posiblesHorarios.includes(hora)) {
         res.json({
             ok: false,
