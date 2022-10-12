@@ -12,7 +12,7 @@ const date = require('date-and-time');
 const obtenerPosiblesDias = () => {
     const hoy = new Date();
     let days = [];
-    for (let i = 0; i < 14; i++) {
+    for (let i = 1; i <= 14; i++) {
         let tempDay = date.addDays(hoy, i);
         days.push(date.format(tempDay, 'MM-DD-YYYY'));
     };
