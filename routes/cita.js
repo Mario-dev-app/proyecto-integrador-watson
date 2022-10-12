@@ -294,7 +294,24 @@ router.post('/registrar-cita', async (req, res) => {
         }
     });
 
-    console.log(dni, codigoEspecialidad.codigo, codigoTurno, fecha);
+    Cita.create({
+        dni: dni,
+        especialidad: codigoEspecialidad.codigo,
+        turno: codigoTurno[0].codigo,
+        fecha: fecha
+    }). then(() => {
+        res.json({
+            ok: true,
+            message: 'Se registró correctamente la cita'
+        });
+    }).catch(() => {
+        res.json({
+            ok: false,
+            message: 'Hubo un error al momento de registrar la cita'
+        });
+    });
+
+    /* console.log(dni, codigoEspecialidad.codigo, codigoTurno[0].codigo, fecha); */
 });
 
 module.exports = router;
