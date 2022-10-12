@@ -5,49 +5,49 @@ const citas = [
         dni: '72552743',
         especialidad: 'ESP1',
         turno: 'M1',
-        fecha: '10-10-2022'
+        fecha: '10-24-2022'
     },
     {
         dni: '72552743',
         especialidad: 'ESP1',
         turno: 'M2',
-        fecha: '10-10-2022'
+        fecha: '10-24-2022'
     },
     {
         dni: '72552743',
         especialidad: 'ESP1',
         turno: 'M3',
-        fecha: '10-10-2022'
+        fecha: '10-24-2022'
     },
     {
         dni: '72552743',
         especialidad: 'ESP1',
         turno: 'M4',
-        fecha: '10-10-2022'
+        fecha: '10-24-2022'
     },
     {
         dni: '72552743',
         especialidad: 'ESP1',
         turno: 'T1',
-        fecha: '10-10-2022'
+        fecha: '10-24-2022'
     },
     {
         dni: '72552743',
         especialidad: 'ESP1',
         turno: 'T2',
-        fecha: '10-10-2022'
+        fecha: '10-24-2022'
     },
     {
         dni: '72552743',
         especialidad: 'ESP1',
         turno: 'T3',
-        fecha: '10-10-2022'
+        fecha: '10-24-2022'
     },
     {
         dni: '72552743',
         especialidad: 'ESP1',
         turno: 'T4',
-        fecha: '10-10-2022'
+        fecha: '10-24-2022'
     },
     {
         dni: '72552743',

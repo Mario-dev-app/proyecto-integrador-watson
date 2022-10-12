@@ -144,6 +144,7 @@ router.post('/turnos-fecha', async (req, res) => {
     Cita.findAll({ attributes: ['turno'], where: { fecha: posibleFecha, especialidad: especialidadCodigo, atendida: false } })
         .then((turnos) => {
             turnos.forEach(({ turno }) => {
+                console.log(turno);
                 turnosArr = turnosArr.filter((turnoArr) => {
                     if (turnoArr !== turno) {
                         return turnoArr;
