@@ -322,6 +322,39 @@
         }
       }
     },
+    "/valida-horario": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "hora",
+            "in": "body",
+            "description": "Hora para la cita",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "hora": {
+                  "type": "string",
+                  "example": "08:00"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Respuesta de la validación del horario enviado por el paciente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BasicResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/citas": {
       "get": {
         "description": "",
@@ -397,7 +430,18 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "Respuesta del registro de la cita",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BasicResponse"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/existe-fake-reniec": {
