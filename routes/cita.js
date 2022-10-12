@@ -35,7 +35,7 @@ router.post('/get-horarios-1', (req, res) => {
           }
       }
       */
-    let especialidadNombre = req.body.especialidad;
+    let especialidadNombre = req.body.especialidad.trim();
     Especialidad.findOne({ attributes: ['codigo'], where: { nombre: especialidadNombre } }).then(({ codigo }) => {
         especialidadCodigo = codigo;
         posiblesDias = obtenerPosiblesDias();
@@ -135,7 +135,13 @@ router.post('/turnos-fecha', async (req, res) => {
           }
       }
       */
-    let posibleFecha = req.body.fecha;
+    let posibleFecha = req.body.fecha.trim();
+    if(!posiblesDias.includes(posibleFecha)){
+        return res.json({
+            ok: false,
+            message: 'El día ingresado no está dentro del rango sugerido'
+        });
+    }
     const turnos = await Turno.findAll({ attributes: ['codigo'] });
     let turnosArr = [];
     turnos.forEach(turno => {
