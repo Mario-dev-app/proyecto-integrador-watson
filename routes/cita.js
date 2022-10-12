@@ -294,7 +294,7 @@ router.post('/registrar-cita', async (req, res) => {
         }
     });
 
-    console.log(dni, {codigo}, codigoTurno, fecha);
+    console.log(dni, codigoEspecialidad.codigo, codigoTurno, fecha);
 });
 
 module.exports = router;
