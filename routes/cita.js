@@ -204,6 +204,51 @@ router.get('/citas', (req, res) => {
             message: err
         });
     });
-})
+});
+
+/* Registrar cita */
+router.post('/registrar-cita', async (req, res) => {
+    /*
+    #swagger.parameters['dni'] = {
+            in: 'body',
+            description: 'DNI para la cita',
+            schema: { dni: '72552743'}
+    }
+   */
+  /*
+    #swagger.parameters['especialidad'] = {
+            in: 'body',
+            description: 'Especialidad para la cita',
+            schema: { especialidad: 'psicología'}
+    }
+   */
+  /*
+    #swagger.parameters['turno'] = {
+            in: 'body',
+            description: 'Turno para la cita',
+            schema: { turno: '08:00'}
+    }
+   */
+  /*
+    #swagger.parameters['fecha'] = {
+            in: 'body',
+            description: 'Fecha para la cita',
+            schema: { fecha: '10-10-2022'}
+    }
+   */
+    let dni = req.body.dni.trim();
+    let especialidad = req.body.especialidad.trim();
+    let turno = req.body.turno.trim();
+    let fecha = req.body.fecha.trim();
+
+    const codigoEspecialidad = await Especialidad.findOne({attributes: ['codigo'] ,where: {nombre: especialidad}});
+    const codigoTurno = codigoxHora.filter(turnoResp => {
+        if(turnoResp.hora == turno){
+            return turnoResp.codigo;
+        }
+    });
+
+    console.log(dni, codigoEspecialidad, codigoTurno, fecha);
+});
 
 module.exports = router;

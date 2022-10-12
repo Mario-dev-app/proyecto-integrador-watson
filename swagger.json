@@ -336,6 +336,70 @@
         }
       }
     },
+    "/registrar-cita": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "dni",
+            "in": "body",
+            "description": "DNI para la cita",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "dni": {
+                  "type": "string",
+                  "example": "72552743"
+                }
+              }
+            }
+          },
+          {
+            "name": "especialidad",
+            "in": "body",
+            "description": "Especialidad para la cita",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "especialidad": {
+                  "type": "string",
+                  "example": "psicología"
+                }
+              }
+            }
+          },
+          {
+            "name": "turno",
+            "in": "body",
+            "description": "Turno para la cita",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "turno": {
+                  "type": "string",
+                  "example": "08:00"
+                }
+              }
+            }
+          },
+          {
+            "name": "fecha",
+            "in": "body",
+            "description": "Fecha para la cita",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "fecha": {
+                  "type": "string",
+                  "example": "10-10-2022"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
     "/existe-fake-reniec": {
       "post": {
         "description": "",
