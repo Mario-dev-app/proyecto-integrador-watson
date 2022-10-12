@@ -9,6 +9,8 @@ let especialidadCodigo;
 
 let posiblesDias = [];
 
+let posiblesHorarios = [];
+
 let indicesToRemove;
 
 let codigoxHora = [
@@ -136,7 +138,7 @@ router.post('/turnos-fecha', async (req, res) => {
       }
       */
     let posibleFecha = req.body.fecha.trim();
-    if(!posiblesDias.includes(posibleFecha)){
+    if (!posiblesDias.includes(posibleFecha)) {
         return res.json({
             ok: false,
             message: 'El día ingresado no está dentro del rango sugerido'
@@ -169,6 +171,7 @@ router.post('/turnos-fecha', async (req, res) => {
                 turnosArr.forEach(turno => {
                     codigoxHora.forEach((obj, i) => {
                         if (obj.codigo == turno) {
+                            posiblesHorarios.push(obj.hora.trim());
                             if (i == 0) {
                                 message = message + obj.hora;
                             } else {
@@ -191,6 +194,39 @@ router.post('/turnos-fecha', async (req, res) => {
         });
 });
 
+/* Validar si la hora ingresada está dentro de las sugeridas */
+router.post('/valida-horario', (req, res) => {
+    /*
+    #swagger.parameters['hora'] = {
+            in: 'body',
+            description: 'Hora para la cita',
+            schema: { hora: '08:00'}
+    }
+   */
+    /*
+        #swagger.responses[200] = {
+            description: 'Respuesta de la validación del horario enviado por el paciente',
+            content: {
+                "application/json": {
+                schema: { $ref: "#/components/schemas/BasicResponse" } 
+                }
+            }
+        }
+        */
+    let hora = req.boby.hora.trim();
+    if (!posiblesHorarios.includes(hora)) {
+        res.json({
+            ok: false,
+            message: 'La hora ingresada no está dentro del rango sugerido'
+        });
+    } else {
+        res.json({
+            ok: true,
+            message: 'El horario está dentro de las sugerencias'
+        });
+    }
+});
+
 /* Obtener citas */
 router.get('/citas', (req, res) => {
     Cita.findAll().then((resp) => {
@@ -209,41 +245,51 @@ router.get('/citas', (req, res) => {
 /* Registrar cita */
 router.post('/registrar-cita', async (req, res) => {
     /*
+      #swagger.responses[200] = {
+          description: 'Respuesta del registro de la cita',
+          content: {
+              "application/json": {
+              schema: { $ref: "#/components/schemas/BasicResponse" } 
+              }
+          }
+      }
+      */
+    /*
     #swagger.parameters['dni'] = {
             in: 'body',
             description: 'DNI para la cita',
             schema: { dni: '72552743'}
     }
    */
-  /*
-    #swagger.parameters['especialidad'] = {
-            in: 'body',
-            description: 'Especialidad para la cita',
-            schema: { especialidad: 'psicología'}
-    }
-   */
-  /*
-    #swagger.parameters['turno'] = {
-            in: 'body',
-            description: 'Turno para la cita',
-            schema: { turno: '08:00'}
-    }
-   */
-  /*
-    #swagger.parameters['fecha'] = {
-            in: 'body',
-            description: 'Fecha para la cita',
-            schema: { fecha: '10-10-2022'}
-    }
-   */
+    /*
+      #swagger.parameters['especialidad'] = {
+              in: 'body',
+              description: 'Especialidad para la cita',
+              schema: { especialidad: 'psicología'}
+      }
+     */
+    /*
+      #swagger.parameters['turno'] = {
+              in: 'body',
+              description: 'Turno para la cita',
+              schema: { turno: '08:00'}
+      }
+     */
+    /*
+      #swagger.parameters['fecha'] = {
+              in: 'body',
+              description: 'Fecha para la cita',
+              schema: { fecha: '10-10-2022'}
+      }
+     */
     let dni = req.body.dni.trim();
     let especialidad = req.body.especialidad.trim();
     let turno = req.body.turno.trim();
     let fecha = req.body.fecha.trim();
 
-    const codigoEspecialidad = await Especialidad.findOne({attributes: ['codigo'] ,where: {nombre: especialidad}});
+    const codigoEspecialidad = await Especialidad.findOne({ attributes: ['codigo'], where: { nombre: especialidad } });
     const codigoTurno = codigoxHora.filter(turnoResp => {
-        if(turnoResp.hora == turno){
+        if (turnoResp.hora == turno) {
             return turnoResp.codigo;
         }
     });
