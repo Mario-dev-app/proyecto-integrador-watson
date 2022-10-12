@@ -158,6 +158,8 @@ router.post('/turnos-fecha', async (req, res) => {
                 });
             } else {
                 let message = '';
+                console.log(turnosArr);
+                console.log(codigoxHora);
                 turnosArr.forEach(turno => {
                     codigoxHora.forEach((obj, i) => {
                         if (obj.codigo == turno) {
