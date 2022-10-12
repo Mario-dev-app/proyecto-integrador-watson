@@ -1,89 +1,92 @@
 const Cita = require('../models/cita');
+const obtenerPosiblesDias = require('./get-posibles-dias');
+
+const posiblesDias = obtenerPosiblesDias();
 
 const citas = [
     {
-        dni: '72552743',
+        dni: '25611614',
         especialidad: 'ESP1',
         turno: 'M1',
-        fecha: '10-24-2022'
+        fecha: posiblesDias[2]
     },
     {
         dni: '72552743',
         especialidad: 'ESP1',
         turno: 'M2',
-        fecha: '10-24-2022'
+        fecha: posiblesDias[2]
     },
     {
-        dni: '72552743',
+        dni: '25611614',
         especialidad: 'ESP1',
         turno: 'M3',
-        fecha: '10-24-2022'
+        fecha: posiblesDias[2]
     },
     {
         dni: '72552743',
         especialidad: 'ESP1',
         turno: 'M4',
-        fecha: '10-24-2022'
+        fecha: posiblesDias[2]
     },
     {
         dni: '72552743',
         especialidad: 'ESP1',
         turno: 'T1',
-        fecha: '10-24-2022'
+        fecha: posiblesDias[2]
     },
     {
         dni: '72552743',
         especialidad: 'ESP1',
         turno: 'T2',
-        fecha: '10-24-2022'
+        fecha: posiblesDias[2]
     },
     {
-        dni: '72552743',
+        dni: '25611614',
         especialidad: 'ESP1',
         turno: 'T3',
-        fecha: '10-24-2022'
+        fecha: posiblesDias[2]
     },
     {
         dni: '72552743',
         especialidad: 'ESP1',
         turno: 'T4',
-        fecha: '10-24-2022'
+        fecha: posiblesDias[2]
     },
     {
         dni: '72552743',
         especialidad: 'ESP4',
         turno: 'M3',
-        fecha: '10-11-2022'
+        fecha: posiblesDias[3]
     },
     {
         dni: '72552743',
         especialidad: 'ESP1',
         turno: 'T1',
-        fecha: '10-12-2022'
+        fecha: posiblesDias[5]
     },
     {
         dni: '72552743',
         especialidad: 'ESP1',
         turno: 'T4',
-        fecha: '10-12-2022'
+        fecha: posiblesDias[5]
     },
     {
-        dni: '72552743',
+        dni: '25611614',
         especialidad: 'ESP1',
         turno: 'T3',
-        fecha: '10-13-2022'
+        fecha: posiblesDias[0]
     },
     {
         dni: '72552743',
         especialidad: 'ESP1',
         turno: 'M1',
-        fecha: '10-13-2022'
+        fecha: posiblesDias[0]
     },
     {
-        dni: '72552743',
+        dni: '25611614',
         especialidad: 'ESP1',
         turno: 'M3',
-        fecha: '10-13-2022'
+        fecha: posiblesDias[7]
     },
 ];
 
