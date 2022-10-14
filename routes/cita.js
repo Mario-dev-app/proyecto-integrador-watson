@@ -1,4 +1,5 @@
 const express = require('express');
+const sequelize = require('../db/connection');
 const router = express.Router();
 const Cita = require('../models/cita');
 const Especialidad = require('../models/especialidad');
@@ -244,6 +245,15 @@ router.get('/citas', (req, res) => {
     });
 });
 
+/* Obtener última cita registrada */
+/* router.get('/ultima-cita', (req, res) => {
+    Cita.findOne({attributes: ['id'] ,order: [['id', 'DESC']]}).then((resp) => {
+        res.json({
+            resp
+        });
+    });
+}); */
+
 /* Registrar cita */
 router.post('/registrar-cita', async (req, res) => {
     /*
@@ -288,6 +298,9 @@ router.post('/registrar-cita', async (req, res) => {
     let especialidad = req.body.especialidad.trim();
     let turno = req.body.turno.trim();
     let fecha = req.body.fecha.trim();
+
+    const correlativo = Cita.findOne({attributes: ['id'] ,order: [['id', 'DESC']]});
+    console.log(correlativo);
 
     const codigoEspecialidad = await Especialidad.findOne({ attributes: ['codigo'], where: { nombre: especialidad } });
     const codigoTurno = codigoxHora.filter(turnoResp => {
