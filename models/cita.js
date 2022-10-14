@@ -18,6 +18,10 @@ const Cita = sequelize.define('Cita', {
         type: DataTypes.STRING,
         allowNull: false
     },
+    codigo: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
     atendida: {
         type: DataTypes.BOOLEAN,
         defaultValue: false

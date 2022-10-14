@@ -311,8 +311,6 @@ router.post('/registrar-cita', async (req, res) => {
 
     const correlativo = generarCorrelativo(numeroCorrelativo + 1);
 
-    console.log(correlativo);
-
     const codigoEspecialidad = await Especialidad.findOne({ attributes: ['codigo'], where: { nombre: especialidad } });
     const codigoTurno = codigoxHora.filter(turnoResp => {
         if (turnoResp.hora == turno) {
@@ -324,7 +322,8 @@ router.post('/registrar-cita', async (req, res) => {
         dni: dni,
         especialidad: codigoEspecialidad.codigo,
         turno: codigoTurno[0].codigo,
-        fecha: fecha
+        fecha: fecha,
+        codigo: correlativo
     }). then(() => {
         res.json({
             ok: true,

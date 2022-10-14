@@ -1,4 +1,5 @@
 const Cita = require('../models/cita');
+const generarCorrelativo = require('./generar-correlativo');
 const obtenerPosiblesDias = require('./get-posibles-dias');
 
 const posiblesDias = obtenerPosiblesDias();
@@ -91,8 +92,15 @@ const citas = [
 ];
 
 const setCitas = () => {
-    citas.forEach( async (cita) =>{
-        Cita.create(cita);
+    citas.forEach( async (cita, i) =>{
+        let correlativo = generarCorrelativo(i+1);
+        Cita.create({
+            dni: cita.dni,
+            especialidad: cita.especialidad,
+            turno: cita.turno,
+            fecha: cita.fecha,
+            codigo: correlativo
+        });
     });
 };
 
