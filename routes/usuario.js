@@ -18,5 +18,21 @@ router.get('/usuarios', (req, res) => {
 });
 
 /* Login de usuario */
+router.post('/login', (req, res) => {
+    let usuario = req.body.usuario;
+    let pass = req.body.pass;
+
+    Usuario.findOne({where: {usuario: usuario, pass: pass}}).then((resp) => {
+        res.json({
+            ok: true,
+            usuario: resp
+        });
+    }).catch((err) => {
+        res.json({
+            ok: false,
+            message: 'Error al buscar usuario'
+        });
+    });
+});
 
 module.exports = router;

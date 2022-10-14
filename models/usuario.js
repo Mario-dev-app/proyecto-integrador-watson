@@ -4,7 +4,8 @@ const sequelize = require('../db/connection');
 const Usuario = sequelize.define('Usuario' ,{
     usuario: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true
     },
     pass: {
         type: DataTypes.STRING,
