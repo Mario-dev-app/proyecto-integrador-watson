@@ -327,7 +327,7 @@ router.post('/registrar-cita', async (req, res) => {
     }). then(() => {
         res.json({
             ok: true,
-            message: 'Se registró correctamente la cita'
+            message: `Se registró correctamente la cita. Su código de cita es ${correlativo}`
         });
     }).catch(() => {
         res.json({
