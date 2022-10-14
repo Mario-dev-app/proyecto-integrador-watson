@@ -333,8 +333,8 @@ router.post('/registrar-cita', async (req, res) => {
 /* Modificar el estado de la cita */
 router.put('/modificar-estado-cita', (req, res) => {
     let id = req.body.id;
-
-    Cita.update({atendida: true}, {where: { id: id }}).then(() => {
+    let atendida = req.body.atendida;
+    Cita.update({atendida: !atendida}, {where: { id: id }}).then(() => {
         res.json({
             ok: true,
             message: 'Estado de la cita modificado correctamente'
