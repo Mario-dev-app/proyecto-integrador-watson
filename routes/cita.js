@@ -229,7 +229,7 @@ router.post('/valida-horario', (req, res) => {
     }
 });
 
-/* Obtener citas */
+/* Obtener citas paginadas*/
 router.get('/citas', (req, res) => {
     let limit = req.query.limit;
     let offset= req.query.offset;
@@ -246,14 +246,6 @@ router.get('/citas', (req, res) => {
     });
 });
 
-/* Obtener última cita registrada */
-/* router.get('/ultima-cita', (req, res) => {
-    Cita.findOne({attributes: ['id'] ,order: [['id', 'DESC']]}).then((resp) => {
-        res.json({
-            resp
-        });
-    });
-}); */
 
 /* Registrar cita */
 router.post('/registrar-cita', async (req, res) => {
@@ -336,7 +328,23 @@ router.post('/registrar-cita', async (req, res) => {
         });
     });
 
-    /* console.log(dni, codigoEspecialidad.codigo, codigoTurno[0].codigo, fecha); */
+});
+
+/* Modificar el estado de la cita */
+router.post('/modificar-estado-cita', (req, res) => {
+    let id = req.body.id;
+
+    Cita.update({atendida: true}, {where: { id: id }}).then(() => {
+        res.json({
+            ok: true,
+            message: 'Estado de la cita modificado correctamente'
+        });
+    }).catch((err) => {
+        res.json({
+            ok: false,
+            message: err
+        });
+    });
 });
 
 module.exports = router;
