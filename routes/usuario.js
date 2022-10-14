@@ -29,9 +29,10 @@ router.post('/login', (req, res) => {
                 message: 'Error al buscar usuario'
             });
         }
+
         res.json({
             ok: true,
-            usuario: resp
+            usuario: resp.usuario
         });
     }).catch((err) => {
         res.json({
