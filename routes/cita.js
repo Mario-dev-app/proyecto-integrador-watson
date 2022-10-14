@@ -300,7 +300,7 @@ router.post('/registrar-cita', async (req, res) => {
     let fecha = req.body.fecha.trim();
 
     const correlativo = await Cita.findOne({attributes: ['id'] ,order: [['id', 'DESC']]});
-    console.log(correlativo);
+    console.log(correlativo.id);
 
     const codigoEspecialidad = await Especialidad.findOne({ attributes: ['codigo'], where: { nombre: especialidad } });
     const codigoTurno = codigoxHora.filter(turnoResp => {
