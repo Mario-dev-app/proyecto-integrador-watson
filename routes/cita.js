@@ -4,6 +4,7 @@ const router = express.Router();
 const Cita = require('../models/cita');
 const Especialidad = require('../models/especialidad');
 const Turno = require('../models/turno');
+const generarCorrelativo = require('../utils/generar-correlativo');
 const obtenerPosiblesDias = require('../utils/get-posibles-dias');
 
 let especialidadCodigo;
@@ -299,8 +300,11 @@ router.post('/registrar-cita', async (req, res) => {
     let turno = req.body.turno.trim();
     let fecha = req.body.fecha.trim();
 
-    const correlativo = await Cita.findOne({attributes: ['id'] ,order: [['id', 'DESC']]});
-    console.log(correlativo.id);
+    const ultimoID = await Cita.findOne({attributes: ['id'] ,order: [['id', 'DESC']]});
+
+    const correlativo = generarCorrelativo(ultimoID.id + 1);
+
+    console.log(correlativo);
 
     const codigoEspecialidad = await Especialidad.findOne({ attributes: ['codigo'], where: { nombre: especialidad } });
     const codigoTurno = codigoxHora.filter(turnoResp => {
