@@ -302,6 +302,9 @@ router.post('/registrar-cita', async (req, res) => {
 
     const ultimoID = await Cita.findOne({attributes: ['id'] ,order: [['id', 'DESC']]});
 
+    console.log(ultimoID);
+    console.log(ultimoID.id);
+
     const correlativo = generarCorrelativo(ultimoID.id + 1);
 
     console.log(correlativo);

@@ -27,7 +27,7 @@ sequelize.authenticate().then(() => {
     setTurnos();
     setPacientes();
     setFakeReniec();
-    setCitas();
+    /* setCitas(); */
 })();
 
 app.listen(process.env.PORT || 3000, () => {
