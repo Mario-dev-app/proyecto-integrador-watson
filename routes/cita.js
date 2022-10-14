@@ -229,7 +229,9 @@ router.post('/valida-horario', (req, res) => {
 
 /* Obtener citas */
 router.get('/citas', (req, res) => {
-    Cita.findAll().then((resp) => {
+    let limit = req.query.limit;
+    let offset= req.query.offset;
+    Cita.findAll({limit: limit, offset: offset}).then((resp) => {
         res.json({
             ok: true,
             data: resp
