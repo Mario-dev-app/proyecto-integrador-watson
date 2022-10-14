@@ -23,6 +23,12 @@ router.post('/login', (req, res) => {
     let pass = req.body.pass;
 
     Usuario.findOne({where: {usuario: usuario, pass: pass}}).then((resp) => {
+        if(!resp){
+            return res.json({
+                ok: false,
+                message: 'Error al buscar usuario'
+            });
+        }
         res.json({
             ok: true,
             usuario: resp
