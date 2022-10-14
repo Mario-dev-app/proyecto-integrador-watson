@@ -302,10 +302,14 @@ router.post('/registrar-cita', async (req, res) => {
 
     const ultimoID = await Cita.findOne({attributes: ['id'] ,order: [['id', 'DESC']]});
 
-    console.log(ultimoID);
-    console.log(ultimoID.id);
+    let numeroCorrelativo;
+    if(ultimoID){
+        numeroCorrelativo = ultimoID.id;
+    }else{
+        numeroCorrelativo = 0;
+    }
 
-    const correlativo = generarCorrelativo(ultimoID.id + 1);
+    const correlativo = generarCorrelativo(numeroCorrelativo + 1);
 
     console.log(correlativo);
 
