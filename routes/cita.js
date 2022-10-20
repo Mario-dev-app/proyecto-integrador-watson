@@ -3,7 +3,9 @@ const sequelize = require('../db/connection');
 const router = express.Router();
 const Cita = require('../models/cita');
 const Especialidad = require('../models/especialidad');
+const Paciente = require('../models/paciente');
 const Turno = require('../models/turno');
+const enviarCorreo = require('../utils/enviar-correo');
 const generarCorrelativo = require('../utils/generar-correlativo');
 const obtenerPosiblesDias = require('../utils/get-posibles-dias');
 
@@ -292,6 +294,8 @@ router.post('/registrar-cita', async (req, res) => {
     let turno = req.body.turno.trim();
     let fecha = req.body.fecha.trim();
 
+    const paciente = await Paciente.findOne({where: {dni: dni}});
+
     const ultimoID = await Cita.findOne({attributes: ['id'] ,order: [['id', 'DESC']]});
 
     let numeroCorrelativo;
@@ -317,6 +321,7 @@ router.post('/registrar-cita', async (req, res) => {
         fecha: fecha,
         codigo: correlativo
     }). then(() => {
+        enviarCorreo(paciente.nombre, paciente.apellidos, dni, paciente.correo, correlativo, especialidad, turno, fecha);
         res.json({
             ok: true,
             message: `Se registró correctamente la cita. Su código de cita es ${correlativo}`
