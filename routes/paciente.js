@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Paciente = require('../models/paciente');
 const FakeReniec = require('../models/fakeReniec');
+const { json } = require('sequelize');
 
 /* Validar si un paciente existe*/
 router.post('/existe-paciente', (req, res) => {
@@ -166,5 +167,21 @@ router.get('/paciente/reset', (req, res) => {
         message: 'Tabla paciente eliminada y creada nuevamente'
     });
 });
+
+/* Obtener un paciente por DNI */
+router.post('/paciente-por-dni', (req, res) => {
+    let dni = req.body.dni;
+    Paciente.findOne({where: {dni: dni}}).then((resp) =>{
+        res.json({
+            ok: true,
+            data: resp
+        });
+    }).catch((err) => {
+        res.json({
+            ok: false,
+            error: err
+        });
+    });
+})
 
 module.exports = router;
