@@ -355,7 +355,7 @@ router.put('/modificar-estado-cita', (req, res) => {
 
 
 /* Buscar cita por código */
-router.get('/buscar-cita', (req, res) => {
+router.post('/buscar-cita', (req, res) => {
 
     let search = req.body.search;
     Cita.findAll({
