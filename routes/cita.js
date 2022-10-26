@@ -8,6 +8,7 @@ const Turno = require('../models/turno');
 const enviarCorreo = require('../utils/enviar-correo');
 const generarCorrelativo = require('../utils/generar-correlativo');
 const obtenerPosiblesDias = require('../utils/get-posibles-dias');
+const { Op } = require("sequelize");
 
 let especialidadCodigo;
 
@@ -348,6 +349,36 @@ router.put('/modificar-estado-cita', (req, res) => {
         res.json({
             ok: false,
             message: err
+        });
+    });
+});
+
+
+/* Buscar cita por código */
+router.get('/buscar-cita', (req, res) => {
+
+    let search = req.body.search;
+    Cita.findAll({
+        where: {
+            [Op.or]: [
+                {
+                    dni: {[Op.like] : `%${search}%`}
+                },
+                {
+                    codigo: {[Op.like] : `%${search}%`}
+                }
+            ]
+        }
+        })
+    .then((resp) => {
+        res.json({
+            ok: true,
+            data: resp
+        });
+    }).catch((err) => {
+        res.json({
+            ok: false,
+            error: err
         });
     });
 });
