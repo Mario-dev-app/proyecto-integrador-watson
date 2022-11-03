@@ -379,31 +379,6 @@
         }
       }
     },
-    "/citas": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "limit",
-            "in": "query",
-            "type": "string"
-          },
-          {
-            "name": "offset",
-            "in": "query",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      }
-    },
     "/registrar-cita": {
       "post": {
         "description": "",
@@ -541,9 +516,9 @@
             "schema": {
               "type": "object",
               "properties": {
-                "codigo": {
+                "dni": {
                   "type": "string",
-                  "example": "0000001"
+                  "example": "000001"
                 }
               }
             }

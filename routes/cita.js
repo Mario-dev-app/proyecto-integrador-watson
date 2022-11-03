@@ -399,7 +399,7 @@ router.post('/buscar-cita-por-codigo', (req, res) => {
    #swagger.parameters['codigo'] = {
         in: 'body',
         description: 'Codigo de la cita',
-        schema: { codigo: '0000001'}
+        schema: { dni: '000001'}
    }
    */
     let codigo = req.body.codigo;
