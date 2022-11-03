@@ -354,7 +354,7 @@ router.put('/modificar-estado-cita', (req, res) => {
 });
 
 
-/* Buscar cita por código */
+/* Buscar cita por código y dni ADMIN PANEL*/
 router.post('/buscar-cita', (req, res) => {
 
     let search = req.body.search;
@@ -380,6 +380,53 @@ router.post('/buscar-cita', (req, res) => {
             ok: false,
             error: err
         });
+    });
+});
+
+/* Buscar cita por código */
+router.post('/buscar-cita-por-codigo', (req, res) => {
+    /*
+    #swagger.responses[200] = {
+        description: 'Retorna la cita encontrada',
+        content: {
+            "application/json": {
+            schema: { $ref: "#/components/schemas/Cita" } 
+            }
+        }
+    }
+    */
+   /*
+   #swagger.parameters['codigo'] = {
+        in: 'body',
+        description: 'Codigo de la cita',
+        schema: { codigo: '0000001'}
+   }
+   */
+    let codigo = req.body.codigo;
+    Cita.findOne({
+        where: {
+            codigo: {[Op.like]: `${codigo.trim()}`}
+        }
+    }).then( async (resp) => {
+        if(!resp){
+            return res.send(resp);
+        }
+
+        let {codigo, hora} = codigoxHora.find((t) => {
+            return t.codigo == resp.turno
+        });
+        let esp = await Especialidad.findOne({where: {codigo: resp.especialidad}});
+        let cita = {
+            turno: hora,
+            especialidad: esp.nombre,
+            fecha: resp.fecha,
+            dni: resp.dni,
+            codigo: resp.codigo
+        };
+        res.send(cita);
+
+    }).catch((err) => {
+        res.send(err);
     });
 });
 

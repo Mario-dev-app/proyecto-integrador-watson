@@ -61,6 +61,26 @@ const doc = {
                     type: 'string'
                 }
             }
+        },
+        Cita: {
+            type: 'object',
+            properties: {
+                turno: {
+                    type: 'string'
+                },
+                especialidad: {
+                    type: 'string'
+                },
+                fecha: {
+                    type: 'string'
+                },
+                dni: {
+                    type: 'string'
+                },
+                codigo: {
+                    type: 'string'
+                }
+            }
         }
     }
 };
